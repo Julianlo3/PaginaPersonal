@@ -12,7 +12,7 @@ class GestionarContacto{
     }
 
     buscarPorId(id){
-        this.repo.buscarPorId(id);
+        return this.repo.buscarPorId(id);
     }
 
     listarContactos(){
@@ -21,13 +21,13 @@ class GestionarContacto{
 
     eliminarContacto(id){
         const contacto = this.buscarPorId(id);
-        if(contacto===-1){
+        if(!contacto){
             console.log('No se puede eliminar el contacto porque no existe');
-        }
-        else{
+        } else {
             this.repo.eliminar(id);
         }
     }
+
 
     borrarTodo(){
         this.repo.eliminarTodo();
