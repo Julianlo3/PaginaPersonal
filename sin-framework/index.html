@@ -2,9 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Página personal</title>
 </head>
+<header>
+    <h1>Los inges</h1>
+    <p>Página personal con información de los inges</p>
+</header>
 <body>
+<div id="inge1" class="carta">
+    <section class="Inicio">
+        <h2 class="nombreInge">Julián Rojas López</h2>
+        <h3 class="fehcaInge">Fecha de nacimiento</h3>
+        <div class="seccionPersonal">
+            <div class="carrusel">
+                carrusel
+            </div>
+            <div class="expectativas">
+                <p class="expe">
+                    Expectativas
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="estudios">
+        <table>
+            <thead>
+            <tr>
+                <th>Nivel</th>
+                <th>Institución</th>
+                <th>Años</th>
+                <th>Ubicación (Opcional)</th>
+            </tr>
+            </thead>
+        </table>
+    </section>
+
+    <section class="pasatiempo">
+    </section>
+
+    <section class="proyecto"></section>
+
+    <section id="formContacto"></section>
+    <form name="contacto">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" placeholder="Julian López" required>
+        <label for="email">Correo electrónico</label>
+        <input type="email" name="email" id="email" placeholder="julian@tudominio.com" required>
+        <label for="telefono">Telefono celular</label>
+        <input type="tel" name="telefono" id="telefono" required>
+        <label for="motivo">Motivo de consulta</label>
+        <select name="motivo" id="motivo" required>
+            <option value="1">Cotizar un proyecto</option>
+            <option value="2">Pedir insta</option>
+        </select>
+        <label for="mensaje">Mensaje o descripción</label>
+        <textarea name="mensaje" id="mensaje" rows="4" cols="50"></textarea>
+        <fieldset id="Contacto">
+            <legend>Preferencia de contacto</legend>
+            <input type="radio" name="contacto" id="contactoPrefe1" value="correo" checked>
+            <label for="contactoPrefe1">Correo electrónico</label>
+            <input type="radio" name="contacto" id="contactoPrefe2" value="telefono">
+            <label for="contactoPrefe2">Teléfono</label>
+        </fieldset>
+        <input type="checkbox" name="terminos" id="terminos">
+        <label for="terminos">¿Acepta los términos de trato de datos?
+            <a href="https://policies.google.com/terms?hl=es" target="_blank">Ver Términos y condiciones</a></label>
+    </form>
+</div>
 
 </body>
 </html>
