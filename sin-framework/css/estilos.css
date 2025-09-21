@@ -1,0 +1,14 @@
+h2{
+    font-size: 30px;
+    background: yellow;
+}
+
+#tablaContactos{
+    border-collapse: collapse;
+}
+#tablaContactos th, #tablaContactos td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+

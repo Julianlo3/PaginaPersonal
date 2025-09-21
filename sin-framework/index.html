@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Página personal</title>
+    <link rel="stylesheet" href="./css/estilos.css">
 </head>
 <header>
     <h1>Los inges</h1>
@@ -26,7 +27,7 @@
     </section>
 
     <section class="estudios">
-        <table>
+        <table id="estudios">
             <thead>
             <tr>
                 <th>Nivel</th>
@@ -43,22 +44,21 @@
 
     <section class="proyecto"></section>
 
-    <section id="formContacto"></section>
-    <form name="contacto">
+    <form id="formContacto">
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" id="nombre" placeholder="Julian López" required>
         <label for="email">Correo electrónico</label>
         <input type="email" name="email" id="email" placeholder="julian@tudominio.com" required>
         <label for="telefono">Telefono celular</label>
-        <input type="tel" name="telefono" id="telefono" required>
-        <label for="motivo">Motivo de consulta</label>
-        <select name="motivo" id="motivo" required>
-            <option value="1">Cotizar un proyecto</option>
-            <option value="2">Pedir insta</option>
+        <input type="tel" name="telefono" id="telefono" placeholder="317XXXXX" required>
+        <label for="selectMotivo">Motivo de consulta</label>
+        <select name="motivo" id="selectMotivo" required>
+            <option value="Cotizar un proyecto">Cotizar un proyecto</option>
+            <option value="Pedir insta">Pedir insta</option>
         </select>
         <label for="mensaje">Mensaje o descripción</label>
-        <textarea name="mensaje" id="mensaje" rows="4" cols="50"></textarea>
-        <fieldset id="Contacto">
+        <textarea name="mensaje" id="mensaje" rows="4" cols="50" placeholder="Breve descripción de la petición"></textarea>
+        <fieldset id="preferencias">
             <legend>Preferencia de contacto</legend>
             <input type="radio" name="contacto" id="contactoPrefe1" value="correo" checked>
             <label for="contactoPrefe1">Correo electrónico</label>
@@ -68,8 +68,32 @@
         <input type="checkbox" name="terminos" id="terminos">
         <label for="terminos">¿Acepta los términos de trato de datos?
             <a href="https://policies.google.com/terms?hl=es" target="_blank">Ver Términos y condiciones</a></label>
+        <input type="submit" value="Enviar">
     </form>
 </div>
+
+<section id="Contactos">
+    <h1>Contactos</h1>
+    <table id="tablaContactos">
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Telefono</th>
+            <th>motivo</th>
+            <th>Mensaje</th>
+            <th>¿Acepta los términos?</th>
+            <th>Preferencia de contacto</th>
+            <th>Fecha Creación</th>
+            <th>Fecha actualización</th>
+        </tr>
+    </table>
+
+</section>
+<script src="./js/script.js"></script>
+<script src="./js/contacto/domain/Contacto.js"></script>
+<script src="./js/contacto/repository/ContactRepository.js"></script>
+<script src="./js/contacto/facade/ContactFacade.js"></script>
+
 
 </body>
 </html>
