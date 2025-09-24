@@ -1,3 +1,19 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0%;
+
+}
+
+header{
+    text-align: center;
+    background: #1B3C53;
+    color: #D2C1B6;
+    padding: 24px 0 24px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    font-size: 30px;
+    letter-spacing: 1px;
+}
+
 h2{
     font-size: 30px;
     background: yellow;
@@ -10,5 +26,3 @@ h2{
     border: 1px solid black;
     border-collapse: collapse;
 }
-
-
