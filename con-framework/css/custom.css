@@ -1,0 +1,59 @@
+#home h1 {
+    padding: 30px;
+    font-family: "Zen Dots", sans-serif;
+    font-weight: 400;
+    letter-spacing: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+#home i {
+    font-size: 35px;
+    color: black;
+    transition: 1s;
+}
+
+#home i:hover {
+    font-size: 55px;
+}
+
+#home nav div{
+    background-color: black;
+}
+
+#home nav a{
+    color: white;
+    transition: 0.5s;
+}
+
+#home nav a:hover{
+    padding: 20px;
+    color: black;
+    background-color: white;
+}
+
+#home #cardImgText{
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
+#home #cardImgText img{
+    margin: 50px;
+    background-color: black;
+    text-align: center;
+    height: 450px;
+}
+
+#home #cardImgText .carousel-control-prev-icon{
+    background-color: black;
+    height: 50px;
+}
+
+#home #cardImgText .carousel-control-next-icon{
+    background-color: black;
+    height: 50px;
+}
