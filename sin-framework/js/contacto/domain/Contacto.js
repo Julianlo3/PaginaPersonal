@@ -1,9 +1,6 @@
 class Contacto {
-     static id = 0;
-
-    constructor(nombre,email,telefono,motivo,mensaje,aceptaTermino,preferenciaContacto,fechaCreacion,fechaActualizacion) {
-        this.id = Contacto.id;
-        Contacto.id = Contacto.id+=1;
+    constructor(id, nombre, email, telefono, motivo, mensaje, aceptaTermino, preferenciaContacto, fechaCreacion, fechaActualizacion) {
+        this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;

@@ -1,80 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Página personal</title>
     <link rel="stylesheet" href="./css/estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <header>
-        <h1>Los inges</h1>
-        <p>Página personal con información de los inges</p>
-    </header>
-    
-    <div id="inge1" class="carta">
-        <section class="Inicio">
-            <h2 class="nombreInge">Julián Rojas López</h2>
-            <h3 class="fehcaInge">Fecha de nacimiento</h3>
-            <div class="seccionPersonal">
-                <div class="carrusel">
-                    carrusel
-                </div>
-                <div class="expectativas">
-                    <p class="expe">
-                        Expectativas
-                    </p>
-                </div>
+        <div class="grid-container">
+            <img id="foto-personal" src="assets/anderson.jpg" alt="Anderson">
+            <div>
+                <h2 id="titulo-nombre">Anderson Vinasco Giraldo</h2>
+                <h2 id="fecha-nacimiento">15-12-2001</h3>
+                    <p id="expectativas">
+                        "Mi objetivo es aplicar conocimientos en programación, análisis de datos <br>
+                        y gestión de proyectos para crear soluciones innovadoras que mejoren<br>
+                        la eficiencia y la calidad de vida. Estoy comprometido con la ética <br>
+                        profesional y el impacto positivo de la tecnología en la sociedad."</p>
+                    <div class="social-icons">
+                        <a href="https://github.com/Anvinov" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://co.linkedin.com/" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
             </div>
-        </section>
+        </div>
+    </header>
 
-        <section class="estudios">
-            <table id="estudios">
-                <thead>
+    <div class="container">
+
+        <div class="carrusel">
+            <img class="carrusel-img" src="assets/musica.jpg" alt="musica">
+            <img class="carrusel-img" src="assets/senderismo.jpg" alt="senderismo" style="display:none;">
+            <img class="carrusel-img" src="assets/gaming.jpg" alt="gaming" style="display:none;">
+            <button class="carrusel-btn" id="prevBtn">&#8592;</button>
+            <button class="carrusel-btn" id="nextBtn">&#8594;</button>
+        </div>
+
+        <h2>Estudios</h2>
+        <table border="1">
+            <thead>
                 <tr>
                     <th>Nivel</th>
                     <th>Institución</th>
                     <th>Años</th>
-                    <th>Ubicación (Opcional)</th>
                 </tr>
-                </thead>
-            </table>
-        </section>
+            </thead>
+            <tbody id="accountsTable">
+                <tr>
+                    <td>Primaria</td>
+                    <td>Institución Educativa Valle del Guamuéz</td>
+                    <td>2007-2012</td>
+                </tr>
+                <tr>
+                    <td>Secundaria</td>
+                    <td>Institución Educativa Valle del Guamuéz</td>
+                    <td>2013-2018</td>
+                </tr>
+                <tr>
+                    <td>Universidad</td>
+                    <td>Universidad del Cauca</td>
+                    <td>2021-2025</td>
+                </tr>
+            </tbody>
+        </table>
 
-        <section class="pasatiempo">
-        </section>
+        <h2>Proyectos</h2>
+        <ul>
+            <li>
+                <strong>Aplicación Cliente E-Commerce</strong><br>
+                <em>Descripción:</em> Aplicación de escritorio para gestión de productos y envios, con integración a
+                base de datos
+                corporativa.<br>
+                <em>Tecnologías usadas:</em> Arquitectura en Capas, C#, Oracle Database, PL/SQL.<br>
+            </li>
+            <br>
+            <li>
+                <strong>Gestor de Proyectos Estudiantiles</strong><br>
+                <em>Descripción:</em> Plataforma para la gestión y seguimiento de proyectos estudiantiles (tipo
+                pasantias).<br>
+                <em>Tecnologías usadas:</em> Arquitectura Hexagonal, Java, Spring Boot, Microservicios, Autentificacion
+                JWT, Contenedores Docker.<br>
+            </li>
+            <br>
+            <li>
+                <strong>Sistema de Música de Consola</strong><br>
+                <em>Descripción:</em> Aplicación de consola para reproducir y gestionar música en streaming (tipo
+                Spotify).<br>
+                <em>Tecnologías usadas:</em> Arquitectura Cliente-Servidor, Go, gRPC.<br>
+            </li>
+        </ul>
 
-        <section class="proyecto"></section>
 
-        <form id="formContacto">
+
+        <h2>Contacto</h2>
+        <form id="formContacto" novalidate>
             <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" id="nombre" placeholder="Julian López" required>
+            <input type="text" name="nombre" id="nombre" placeholder="Anderson Vinasco" required>
+            <small class="error" id="error-nombre"></small>
+
             <label for="email">Correo electrónico</label>
-            <input type="email" name="email" id="email" placeholder="julian@tudominio.com" required>
-            <label for="telefono">Telefono celular</label>
+            <input type="email" name="email" id="email" placeholder="anderson@tudominio.com" required>
+            <small class="error" id="error-email"></small>
+
+            <label for="telefono">Teléfono celular</label>
             <input type="tel" name="telefono" id="telefono" placeholder="317XXXXX" required>
+            <small class="error" id="error-telefono"></small>
+
             <label for="selectMotivo">Motivo de consulta</label>
             <select name="motivo" id="selectMotivo" required>
-                <option value="Cotizar un proyecto">Cotizar un proyecto</option>
-                <option value="Pedir insta">Pedir insta</option>
+                <option value="" disabled selected>Seleccione un motivo</option>
+                <option value="cotizacion">Cotización</option>
+                <option value="soporte">Soporte</option>
+                <option value="otros">Otros</option>
             </select>
+            <small class="error" id="error-motivo"></small>
+
             <label for="mensaje">Mensaje o descripción</label>
-            <textarea name="mensaje" id="mensaje" rows="4" cols="50" placeholder="Breve descripción de la petición"></textarea>
+            <textarea name="mensaje" id="mensaje" rows="4" cols="50"
+                placeholder="Breve descripción de la petición"></textarea>
+            <small class="error" id="error-mensaje"></small>
+
             <fieldset id="preferencias">
                 <legend>Preferencia de contacto</legend>
-                <input type="radio" name="contacto" id="contactoPrefe1" value="correo" checked>
-                <label for="contactoPrefe1">Correo electrónico</label>
-                <input type="radio" name="contacto" id="contactoPrefe2" value="telefono">
-                <label for="contactoPrefe2">Teléfono</label>
+                <label><input type="radio" name="contacto" value="correo" required> Correo electrónico</label>
+                <label><input type="radio" name="contacto" value="telefono"> Teléfono</label>
             </fieldset>
-            <input type="checkbox" name="terminos" id="terminos">
-            <label for="terminos">¿Acepta los términos de trato de datos?
-                <a href="https://policies.google.com/terms?hl=es" target="_blank">Ver Términos y condiciones</a></label>
-            <input type="submit" value="Enviar">
-        </form>
-    </div>
+            <small class="error" id="error-contacto"></small>
 
-    <section id="Contactos">
-        <h1>Contactos</h1>
+            <label>
+                <input type="checkbox" name="terminos" id="terminos">¿Acepta los términos de trato de datos?
+                <a href="https://policies.google.com/terms?hl=es" target="_blank">Ver Términos y condiciones</a>
+            </label>
+            <small class="error" id="error-terminos"></small>
+
+            <button id="btn-enviar" type="submit">Enviar</button>
+        </form>
+
+        <h2>Tabla de contactos</h2>
         <table id="tablaContactos">
             <tr>
                 <th>Id</th>
@@ -91,12 +159,14 @@
             </tr>
             <tbody id="tbody"></tbody>
         </table>
-    </section>
+
+    </div>
+
     <script src="./js/script.js"></script>
     <script src="./js/contacto/domain/Contacto.js"></script>
     <script src="./js/contacto/repository/ContactRepository.js"></script>
     <script src="./js/contacto/facade/ContactFacade.js"></script>
-
-
+    <script src="./js/validaciones.js"></script>
 </body>
+
 </html>
