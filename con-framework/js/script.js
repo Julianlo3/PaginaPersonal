@@ -164,7 +164,7 @@ function validateCheckboxField(fieldName) {
 // Función para configurar validación en tiempo real (blur)
 function setupFieldValidation() {
     // Validación para campos de texto
-    const textFields = ['nombre', 'email', 'telefono'];
+    const textFields = ['nombre', 'email', 'telefono','mensaje'];
     textFields.forEach(fieldName => {
         const field = document.getElementById(fieldName);
         if (field) {
@@ -258,15 +258,34 @@ function setupFormSubmission() {
 
             if (validateForm()) {
                 console.log('Formulario válido - procesando envío...');
-
+                const nombre = document.getElementById("nombre").value;
+                const email = document.getElementById("email").value;
+                const telefono = document.getElementById("telefono").value;
+                const selectMotivo = document.getElementById("selectMotivo");
+                const motivo = selectMotivo.options[selectMotivo.selectedIndex].text;
+                const contactoSeleccionado = document.querySelector('input[name="contacto"]:checked')?.value;
+                const mensaje = document.getElementById("mensaje").value;
+                const terminos = document.querySelector('input[name="terminos"]')?.checked;
                 // Aquí puedes agregar la lógica para enviar el formulario
                 // Por ejemplo, hacer una petición AJAX o enviar los datos a un servidor
 
                 // Simular envío exitoso
+                try {
+                    // Registrar contacto (reemplaza tu gestionarContacto.registrarContacto)
+                    const nuevoContacto = gestionarContacto.registrarContacto(
+                        nombre, email, telefono, motivo, mensaje, terminos, contactoSeleccionado
+                    );
+
+                    alert("Formulario enviado correctamente");
+
+                } catch (error) {
+                    console.log(error.message);
+                    alert(error.message);
+                }
                 showSuccessMessage();
 
                 // Opcional: limpiar el formulario después del envío exitoso
-                // resetForm();
+                resetForm();
 
             } else {
                 console.log('Formulario inválido - mostrando errores');

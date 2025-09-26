@@ -22,25 +22,59 @@
     font-size: 55px;
 }
 
-#home nav div{
-    background-color: black;
+#home nav {
+    background-color: black !important;
 }
 
-#home nav a{
-    color: white;
+#home .navbar {
+    background-color: black !important;
+    padding: 1rem 0;
+}
+
+/* Enlaces del navbar */
+#home nav a {
+    color: white !important;
     transition: 0.5s;
+    padding: 10px 15px !important;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
-#home nav a:hover{
-    padding: 20px;
-    color: black;
-    background-color: white;
+#home nav a:hover {
+    color: black !important;
+    background-color: white !important;
+    transform: translateY(-2px);
 }
 
-#home #cardImgText{
-    display: grid;
-    grid-template-columns: 60% 35%;
+/* === BOTÓN HAMBURGUESA === */
+#home .navbar-toggler {
+    border: 2px solid white !important;
+    padding: 8px 12px;
+    background-color: transparent;
+    border-radius: 5px;
 }
+
+#home .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5) !important;
+    outline: none;
+}
+
+/* Ícono hamburguesa personalizado */
+#home .navbar-toggler-icon {
+    width: 25px;
+    height: 25px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* tamaño fijo al carrusel de la sección "Quién soy" */
+.whoami-row #img img {
+    width: auto;   /* ancho máximo */
+    height: 600px;       /* mantiene proporción */
+    margin: 0 auto;     /* centra horizontal */
+    display: block;
+}
+
 
 #home #cardImgText img{
     margin: 50px;
@@ -49,12 +83,7 @@
     height: 450px;
 }
 
-#home #cardImgText .carousel-control-prev-icon{
-    background-color: black;
-    height: 50px;
-}
-
-#home #cardImgText .carousel-control-next-icon{
+.whoami-row .carousel-control-prev-icon,.whoami-row .carousel-control-next-icon{
     background-color: black;
     height: 50px;
 }
@@ -65,8 +94,6 @@
     align-self: center;
     font-size: 20px;
 }
-
-/* Estilo general de la tabla */
 
 
 
@@ -98,19 +125,12 @@
     text-align: center;
 }
 
-.cards-container {
-    text-align: center;
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
-    justify-content: center; /* centra todo horizontalmente */
-    align-items: flex-start; /* alinea arriba */
-    gap: 20px; /* espacio entre las cards */
-    padding: 20px;
-}
 
 .cards-container img{
     background-color: black;
 }
+
+
 
 /* === ESTILOS PARA FORMULARIO - TEMA BLANCO Y NEGRO === */
 

@@ -9,6 +9,7 @@ function buildTableRows(rows) {
 }
 
 const headersTable = ["Nivel", "Institución", "Años", "Ubicación"];
+const headersTable2 = ["Nivel2", "Institución2", "Años2", "Ubicación"];
 const rows = [
     ["Primaria", "I.E.M Central", "2007-2012", "Pitalito - Huila"],
     ["Secundaria", "I.E.M Humerto Muñoz Ordoñez", "2013-2019", "Pitalito - Huila"],
@@ -34,97 +35,183 @@ loadComponent("home", "/con-framework/components/templates/homeTemplate.html").t
             });
         loadComponent("parafoInge", "/con-framework/components/atoms/paragraf.html", {
             text: "Ingeniero de sistemas",
-            className: "text-center md-4"
+            className: "text-center mb-4"
         });
         // Cargo otra molécula (navbar)
         loadComponent("navbar", "/con-framework/components/molecules/navbar.html");
     })
     loadComponent("s1", "/con-framework/components/organisms/section1.html").then(() => {
-        loadComponent("title", "/con-framework/components/atoms/title.html", {text: "¿Quién Soy?"});
-        loadComponent("card", "/con-framework/components/molecules/cardImgText.html", {className: "card d-flex"}).then(() => {
+        loadComponent("title", "/con-framework/components/atoms/title.html", { text: "¿Quién Soy?" });
+
+        // 1) Carga la tarjeta base (wrapper)
+        loadComponent("card", "/con-framework/components/molecules/cardImgText.html", { className: "card" }).then(() => {
+            // 2) Carga carrusel e inmediatamente el texto
             loadComponent("img", "/con-framework/components/organisms/carousel.html", {
                 img1: "/con-framework/assets/images/Yo/Yo1.jpg",
                 img2: "/con-framework/assets/images/Yo/Yo2.jpg",
                 img3: "/con-framework/assets/images/Yo/Yo3.jpg",
-                caption1: "",
-                caption2: "",
-                caption3: "",
+                caption1: "", caption2: "", caption3: ""
+            }).then(() => {
+                return loadComponent("text", "/con-framework/components/atoms/paragraf.html", {
+                    className: "lead m-0",
+                    text:
+                        "Soy Julián Rojas López, un opita perdido en el Cauca. Nací el 14 de octubre de 2001. " +
+                        "Actualmente tengo 23 años y me dedico a estudiar la poderosa carrera de Ingeniería de Sistemas en la Universidad del Cauca. <br>" +
+                        "Mis expectativas como futuro profesional de Ingeniería de Sistemas se enfocan en la creación de proyectos que tengan un impacto inmediato en la vida de las personas " +
+                        "y, por supuesto, en tener al menos un salario digno por la quemadera de ojos que conlleva ser ingeniero."
+                });
+            }).then(() => {
+                // 3) Fuerza la grilla Bootstrap (apilado en md-, lado a lado en lg+)
+                const card = document.getElementById("card");
+                const img = document.getElementById("img");
+                const text = document.getElementById("text");
+                if (!card || !img || !text) return;
+
+                // Evita que estilos previos de la molécula rompan la grilla
+                card.style.display = "block";
+                card.className = "card p-3"; // limpio posibles d-flex/flex-row/grids del wrapper
+
+                // Crea la fila + columnas
+                const row = document.createElement("div");
+                row.className = "row g-4 align-items-center whoami-row";
+
+                const colImg = document.createElement("div");
+                colImg.className = "col-12 col-lg-6";
+
+                const colText = document.createElement("div");
+                colText.className = "col-12 col-lg-6";
+
+                // Por si la molécula envolvió #img o #text con contenedores extras:
+                // me llevo SOLO los nodos raíz #img y #text a las columnas nuevas
+                colImg.appendChild(img);
+                colText.appendChild(text);
+
+                // Espaciado cuando está apilado (sm/md)
+                text.classList.add("mt-3", "mt-lg-0");
+
+                // Previene desbordes en móvil
+                img.classList.add("w-100");
+                // Si tu carrusel tiene <img> internas, asegúralas fluidas:
+                img.querySelectorAll("img").forEach(im => im.classList.add("img-fluid"));
+
+                row.appendChild(colImg);
+                row.appendChild(colText);
+
+                // Reemplaza el contenido de la tarjeta por la fila responsive
+                card.innerHTML = "";
+                card.appendChild(row);
             });
-            loadComponent("text", "/con-framework/components/atoms/paragraf.html", {
-                text: "Soy Julián Rojas López, un opita perdido en el Cauca. Nací el 14 de octubre de 2001. " +
-                    "Actualmente tengo 23 años y me dedico a estudiar la poderosa carrera de Ingeniería de Sistemas en la Universidad del Cauca. <br>" +
-                    "Mis expectativas como futuro profesional de Ingeniería de Sistemas se " +
-                    "enfocan en la creación de proyectos que tengan un impacto inmediato en la vida de las personas " +
-                    " y por supuesto en tener al menos un salario digno por la quemadera de ojos que conlleva ser ingeniero. "
-            })
-        })
-    })
-    loadComponent("s2", "/con-framework/components/molecules/tableData.html", {className: "tablaEstudio"}).then(() => {
-        loadComponent("titleTable", "/con-framework/components/atoms/title.html", {text: "Mis estudios"});
+        });
+    });
+
+
+    loadComponent("s2", "/con-framework/components/molecules/tableData.html", {
+        className: "container my-5 table-responsive", idTableTitle:"tableEstudioTitle", idTable:"tablaEstudio"
+    }).then(() => {
+        loadComponent("tableEstudioTitle", "/con-framework/components/atoms/title.html", {text: "Mis estudios"});
         loadComponent("tablaEstudio", "/con-framework/components/atoms/table.html", {
             headers: buildTableHeaders(headersTable),
             rows: buildTableRows(rows),
-            className: "table table-responsive table-striped table-bordered table-hover table-sm align-middle"
+            className: "table table-striped table-bordered table-hover table-sm align-middle w-100"
         })
     })
 
     loadComponent("s3", "/con-framework/components/organisms/3card.html", {
-        classNameDiv: "cards-container",
-        classNameCard1: "card",
-        classNameCard2: "card",
-        classNameCard3: "card"
+        // Usar container-fluid para mejor control, o simplemente "container"
+        classNameDiv: "container my-5",
+        // Las cards no deben tener "card" en la clase principal, eso va en el componente interno
+        classNameCard1: "col-12 col-md-6 col-lg-4 mb-4 d-flex",
+        classNameCard2: "col-12 col-md-6 col-lg-4 mb-4 d-flex",
+        classNameCard3: "col-12 col-md-6 col-lg-4 mb-4 d-flex"
     }).then(() => {
-        loadComponent("title3card", "/con-framework/components/atoms/title.html", {text: "Pasatiempos"});
+        // Cargar título
+        loadComponent("title3card", "/con-framework/components/atoms/title.html", {
+            text: "Pasatiempos"
+        });
+
+        // Crear un contenedor row para las cards
+        const s3Container = document.getElementById("s3");
+        const cardsContainer = s3Container.querySelector('[class*="container"]');
+
+        // Agregar la clase row para que funcione el sistema de grillas
+        if (cardsContainer) {
+            // Crear un wrapper row si no existe
+            const existingRow = cardsContainer.querySelector('.row');
+            if (!existingRow) {
+                const rowDiv = document.createElement('div');
+                rowDiv.className = 'row g-4 justify-content-center';
+
+                // Mover las cards al row
+                const cards = cardsContainer.querySelectorAll('[class*="col-"]');
+                cards.forEach(card => {
+                    rowDiv.appendChild(card);
+                });
+
+                cardsContainer.appendChild(rowDiv);
+            }
+        }
+
+        // Cargar las cards
         loadComponent("card1", "/con-framework/components/molecules/card3ImgText.html", {
             IDTitleCard: "homeCard1",
             IDImgCard: "imgCard1",
-            IDTextCard: "textCard1"
+            IDTextCard: "textCard1",
+            className: "card h-100" // Agregar clases de Bootstrap aquí
         }).then(() => {
             loadComponent("homeCard1", "/con-framework/components/atoms/titleCard.html", {
                 text: "Jugar videojuegos",
-                className: "p-4"
+                className: "card-title p-3 text-center"
             });
             loadComponent("imgCard1", "/con-framework/components/atoms/img.html", {
                 src: "/con-framework/assets/images/Pasatiempos/Jugar.jpg",
-                className: "img-thumbnail"
+                className: "card-img-top img-fluid"
             });
-            loadComponent("textCard1", "/con-framework/components/atoms/paragraf.html",
-                {text: "No solo es pasar tiempo viendo una pantalla, se trata de vivir númerosas aventuras, risas y tiempo con personas que se recordarán por mucho tiempo"});
-        })
+            loadComponent("textCard1", "/con-framework/components/atoms/paragraf.html", {
+                text: "No solo es pasar tiempo viendo una pantalla, se trata de vivir númerosas aventuras, risas y tiempo con personas que se recordarán por mucho tiempo",
+                className: "card-text p-3"
+            });
+        });
+
         loadComponent("card2", "/con-framework/components/molecules/card3ImgText.html", {
             IDTitleCard: "homeCard2",
             IDImgCard: "imgCard2",
-            IDTextCard: "textCard2"
+            IDTextCard: "textCard2",
+            className: "card h-200"
         }).then(() => {
             loadComponent("homeCard2", "/con-framework/components/atoms/titleCard.html", {
                 text: "Tomar fotos",
-                className: "p-4"
+                className: "card-title p-3 text-center"
             });
             loadComponent("imgCard2", "/con-framework/components/atoms/img.html", {
                 src: "/con-framework/assets/images/Pasatiempos/TomarFoto.jpg",
-                className: "img-thumbnail"
+                className: "card-img-top img-fluid"
             });
-            loadComponent("textCard2", "/con-framework/components/atoms/paragraf.html",
-                {text: "En algún punto tomé una foto a mi primer hola mundo, ahora estoy sufriendo con atomic Design. Las fotos permiten esto, recordar y vivir nuevamente momentos que ya quedaron en el olvido."});
-        })
+            loadComponent("textCard2", "/con-framework/components/atoms/paragraf.html", {
+                text: "En algún punto tomé una foto a mi primer hola mundo, ahora estoy sufriendo con atomic Design. Las fotos permiten esto, recordar y vivir nuevamente momentos que ya quedaron en el olvido.",
+                className: "card-text p-3"
+            });
+        });
+
         loadComponent("card3", "/con-framework/components/molecules/card3ImgText.html", {
             IDTitleCard: "homeCard3",
             IDImgCard: "imgCard3",
-            IDTextCard: "textCard3"
+            IDTextCard: "textCard3",
+            className: "card h-100"
         }).then(() => {
             loadComponent("homeCard3", "/con-framework/components/atoms/titleCard.html", {
                 text: "Visitar pueblitos",
-                className: "p-4"
+                className: "card-title p-3 text-center"
             });
             loadComponent("imgCard3", "/con-framework/components/atoms/img.html", {
                 src: "/con-framework/assets/images/Pasatiempos/VisitarPueblitos.jpg",
-                className: "img-thumbnail"
+                className: "card-img-top img-fluid"
             });
             loadComponent("textCard3", "/con-framework/components/atoms/paragraf.html", {
-                text: "Visitar pueblitos es lo mejor, se conoce nuevos lugares y personas. Es una experiencia que permite salir de la cueva un rato."
+                text: "Visitar pueblitos es lo mejor, se conoce nuevos lugares y personas. Es una experiencia que permite salir de la cueva un rato.",
+                className: "card-text p-3"
             });
-        })
-    })
+        });
+    });
     // Cargo el organismo
     loadComponent("s4", "/con-framework/components/organisms/listaDeProyectos.html", {idName: "misProyectos"})
         .then(() => {
@@ -258,7 +345,7 @@ loadComponent("home", "/con-framework/components/templates/homeTemplate.html").t
                 });
                 loadComponent("inputMensaje", "/con-framework/components/atoms/textarea.html", {
                     name: "mensaje",
-                    idInput: "mensaje",
+                    idTextarea: "mensaje",
                     rows: "4",
                     cols: "50",
                     placeholder: "Breve descripción de la petición"
@@ -303,6 +390,17 @@ loadComponent("home", "/con-framework/components/templates/homeTemplate.html").t
     loadComponent("botonEnviar", "/con-framework/components/atoms/button.html", {
         idButton: "btn-enviar", type: "submit", text: "Enviar"
     });
+
+    loadComponent("s5", "/con-framework/components/molecules/tableData.html", {
+        className: "container my-5 table-responsive", idTableTittle:"tableContactTitle", idTable:"tablaContact"
+    }).then(() => {
+        loadComponent("tableContactTitle", "/con-framework/components/atoms/title.html", {text: "Contactos"});
+        loadComponent("tablaContact", "/con-framework/components/atoms/table.html", {
+            headers: buildTableHeaders(headersTable2),
+            rows: buildTableRows(rows),
+            className: "table table-striped table-bordered table-hover table-sm align-middle w-100"
+        })
+    })
 })
 
 
