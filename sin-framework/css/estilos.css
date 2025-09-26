@@ -70,12 +70,14 @@ button {
     cursor: pointer;
     margin-top: 10px;
     margin-bottom: 10px;
+    transition: color 0.3s, background-color 0.3s;
 }
 
 button:hover {
     background-color: white;
     color: #456882;
     border: 1px solid #456882;
+    padding: 9px 14px;
 }
 
 select {
@@ -133,6 +135,23 @@ select {
     color: red;
     font-size: 0.9em;
     display: block;
+}
+
+.social-icons {
+  margin-top: 10px;
+  display: flex;
+  gap: 15px; /* espacio entre íconos */
+  font-size: 2rem; /* tamaño de los íconos */
+}
+
+.social-icons a {
+  color: inherit; /* usa el color del texto actual */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #4f5963;
 }
 
 #prevBtn {
