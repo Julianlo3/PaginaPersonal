@@ -113,8 +113,10 @@ loadComponent("home","/con-framework/components/templates/homeTemplate.html").th
                 document.getElementById("tecnologias2").innerText = "HTML,CSS";
                 document.getElementById("demo2").href = "https://github.com/Julianlo3/Cursos";
             });
-
         });
-
+    loadComponent("s4", "/con-framework/components/organisms/formContact.html")
+        .then(() => {
+            loadComponent("titleForm","/con-framework/components/atoms/title.html",{text:"Formulario de contacto"})
+        })
 })
 
