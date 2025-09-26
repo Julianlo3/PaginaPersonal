@@ -1,5 +1,6 @@
-class ContactRepository{
-    constructor(){
+class ContactRepository {
+
+    constructor() {
         const data = localStorage.getItem("contactos");
         try {
             this.Contactos = data ? JSON.parse(data) : [];
@@ -9,25 +10,25 @@ class ContactRepository{
         }
     }
 
-    guardarEnStorage(){
-       localStorage.setItem("contactos", JSON.stringify(this.Contactos));
+    guardarEnStorage() {
+        localStorage.setItem("contactos", JSON.stringify(this.Contactos));
     }
 
-    agregar(Contacto){
+    agregar(Contacto) {
         this.Contactos.push(Contacto);
         this.guardarEnStorage();
     }
 
-    obtener(){
+    obtener() {
         return this.Contactos;
     }
 
-    buscarPorId(id){
+    buscarPorId(id) {
         return this.Contactos.find((contacto) => contacto.id === id);
     }
 
 
-    eliminar(id){
+    eliminar(id) {
         const indiceContacto = this.Contactos.findIndex(contacto => contacto.id === id);
         if (indiceContacto !== -1) {
             this.Contactos.splice(indiceContacto, 1);
@@ -38,11 +39,11 @@ class ContactRepository{
         }
     }
 
-    modificar(Contacto){
+    modificar(Contacto) {
 
     }
 
-    eliminarTodo(){
+    eliminarTodo() {
         this.Contactos = [];
         this.guardarEnStorage();
         console.log("Todos los contactos eliminados");
