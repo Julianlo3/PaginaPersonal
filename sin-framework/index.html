@@ -10,7 +10,7 @@
 <body>
     <header>
         <div class="grid-container">
-            <img id="foto-personal" src="assets/user.jpg" alt="Anderson">
+            <img id="foto-personal" src="assets/anderson.jpg" alt="Anderson">
             <div>
                 <h2 id="titulo-nombre">Anderson Vinasco Giraldo</h2>
                 <h2 id="fecha-nacimiento">15-12-2001</h3>
@@ -26,9 +26,9 @@
     <div class="container">
 
         <div class="carrusel">
-            <img class="carrusel-img" src="assets/senderismo.jpg" alt="Foto 1">
-            <img class="carrusel-img" src="assets/user.jpg" alt="Foto 2" style="display:none;">
-            <img class="carrusel-img" src="assets/pasatiempo.jpg" alt="Foto 3" style="display:none;">
+            <img class="carrusel-img" src="assets/musica.jpg" alt="musica">
+            <img class="carrusel-img" src="assets/senderismo.jpg" alt="senderismo" style="display:none;">
+            <img class="carrusel-img" src="assets/gaming.jpg" alt="gaming" style="display:none;">
             <button class="carrusel-btn" id="prevBtn">&#8592;</button>
             <button class="carrusel-btn" id="nextBtn">&#8594;</button>
         </div>
@@ -61,6 +61,30 @@
             </tbody>
         </table>
 
+        <h2>Proyectos</h2>
+        <ul>
+            <li>
+                <strong>Aplicación Cliente E-Commerce</strong><br>
+                <em>Descripción:</em> Aplicación de escritorio para gestión de productos y envios, con integración a base de datos
+                corporativa.<br>
+                <em>Tecnologías usadas:</em> Arquitectura en Capas, C#, Oracle Database, PL/SQL.<br>
+            </li>
+            <br>
+            <li>
+                <strong>Gestor de Proyectos Estudiantiles</strong><br>
+                <em>Descripción:</em> Plataforma para la gestión y seguimiento de proyectos estudiantiles (tipo pasantias).<br>
+                <em>Tecnologías usadas:</em> Arquitectura Hexagonal, Java, Spring Boot, Microservicios, Autentificacion JWT, Contenedores Docker.<br>
+            </li>
+            <br>
+            <li>
+                <strong>Sistema de Música de Consola</strong><br>
+                <em>Descripción:</em> Aplicación de consola para reproducir y gestionar música en streaming (tipo Spotify).<br>
+                <em>Tecnologías usadas:</em> Arquitectura Cliente-Servidor, Go, gRPC.<br>
+            </li>
+        </ul>
+
+
+
         <h2>Contacto</h2>
         <form id="formContacto" novalidate>
             <label for="nombre">Nombre:</label>
@@ -77,9 +101,10 @@
 
             <label for="selectMotivo">Motivo de consulta</label>
             <select name="motivo" id="selectMotivo" required>
-                <option value="">Seleccione un motivo</option>
-                <option value="Cotizar un proyecto">Cotizar un proyecto</option>
-                <option value="Pedir insta">Pedir insta</option>
+                <option value="" disabled selected>Seleccione un motivo</option>
+                <option value="cotizacion">Cotización</option>
+                <option value="soporte">Soporte</option>
+                <option value="otros">Otros</option>
             </select>
             <small class="error" id="error-motivo"></small>
 
@@ -101,10 +126,10 @@
             </label>
             <small class="error" id="error-terminos"></small>
 
-            <button type="submit">Enviar</button>
+            <button id="btn-enviar" type="submit">Enviar</button>
         </form>
 
-        <h1>Contactos</h1>
+        <h2>Tabla de contactos</h2>
         <table id="tablaContactos">
             <tr>
                 <th>Id</th>

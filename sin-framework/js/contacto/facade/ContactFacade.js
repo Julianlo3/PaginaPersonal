@@ -34,7 +34,6 @@ class GestionarContacto {
         }
     }
 
-
     borrarTodo() {
         this.repo.eliminarTodo();
     }
