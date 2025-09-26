@@ -292,7 +292,7 @@ loadComponent("home", "/con-framework/components/templates/homeTemplate.html").t
 // === Términos y condiciones (checkbox) ===
             loadComponent("campoTerminos", "/con-framework/components/molecules/campoCheckbox.html", {
                 idInput: "inputTerminos", idError: "errorTerminos",
-                name: "terminos", idInput: "terminos",
+                name: "terminos",
                 text: "¿Acepta los términos de trato de datos?",
                 href: "https://policies.google.com/privacy?hl=es"
             });
